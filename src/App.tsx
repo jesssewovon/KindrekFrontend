@@ -6,7 +6,6 @@ import { Routes, Route, useNavigate } from 'react-router';
 import Landing from './pages/Landing';
 import Home from './pages/Home';
 import About from './pages/About';
-import ScrollPage from './pages/ScrollPage';
 import Profile from './pages/Profile';
 import WishList from './pages/WishList';
 import ChatList from './pages/ChatList';
@@ -107,11 +106,6 @@ function App() {
                 </KeepAlive>
               } />
               <Route path="/about" element={<About />} />
-              <Route id="scroll-page" path="/scroll-page" element={
-                <KeepAlive>
-                  <ScrollPage savedScroll={scrollY} onSaveScroll={setScrollY} />
-                </KeepAlive>
-              } />
               <Route path="/profile" element={<Profile />} />
               <Route path="/wishlist" element={
                 <KeepAlive id="wishlist">

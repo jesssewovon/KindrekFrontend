@@ -88,7 +88,7 @@ export const signoutPiketplace = createAsyncThunk(
 export const changeLanguage = createAsyncThunk<any, string>(
   'auth/changeLanguage',
   async (lang, thunkAPI) => {
-    i18n.changeLanguage(lang, function(error, t){
+    i18n.changeLanguage(lang, function(){
       //console.log('changed language', error)
       /* MySwal.fire({
         title: "Info",
@@ -217,7 +217,7 @@ export const showPiAdRewarded = createAsyncThunk<any, string>(
 
 export const showPiAdInterstitial = createAsyncThunk(
   'auth/showPiAdInterstitial',
-  async (_, thunkAPI) => {
+  async (_, {}) => {
     try{
       const ready = await window.Pi.Ads.isAdReady("interstitial");
       //alert('Pi Ads ready '+JSON.stringify(ready))
@@ -304,10 +304,13 @@ export const piPayment = createAsyncThunk<void, any>(
     const onCancel = (paymentId: string) =>{
         //commit('CLEAR_PAYMENT_VERIFIER')
         //console.log('onCancel', paymentId);
-        //return api.get('/cancel', { paymentId:paymentId }, config);
+        return api.post('/cancel', { paymentId:paymentId }, config);
     };
     const onError = (error: any, payment: any) =>{
         //console.log('onError', error);
+        if (error) {
+            //console.log(payment);
+        }
         if (payment) {
             //console.log(payment);
         }
