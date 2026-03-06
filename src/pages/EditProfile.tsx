@@ -503,7 +503,7 @@ export default function EditProfile() {
             <input type="search" className="form-control ms-0" placeholder="Search..."/>
           </div>
           <ul className="dz-tag-list style-2">
-            {interestsForm?.map(({ name, value }, index) => {
+            {interestsForm?.map(({ name }, index) => {
                 return (
                     <li key={index}>
                       <div onClick={() => handleInterestAddOnClick(index)} className={`dz-tag ${interestsForm[index].value?'selected-interest':''}`}>
