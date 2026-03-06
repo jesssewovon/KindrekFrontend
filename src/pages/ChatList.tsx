@@ -1,6 +1,5 @@
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 
-import { useTranslation } from "react-i18next";
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -28,7 +27,6 @@ import type { ProfileState } from '../types';
 export default function ChatList() {
   //const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { isLoading, user } = useSelector((state: RootState) => state.user);
 
   const [chatList, setChatList] = useState([]);

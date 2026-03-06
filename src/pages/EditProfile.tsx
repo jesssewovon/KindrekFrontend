@@ -22,7 +22,8 @@ export default function EditProfile() {
   const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
   console.log('profileForm', profileForm)
 
-  const [subscriptionData, setSubscriptionData] = useState(user.profile?.subscriptionData);
+  //const [subscriptionData, setSubscriptionData] = useState(user.profile?.subscriptionData);
+  const subscriptionData = user.profile?.subscriptionData;
 
   const [profile, setProfile] = useState<ProfileState>(profileForm);
   const [interestsForm, setInterestsForm] = useState<any[]>([]);

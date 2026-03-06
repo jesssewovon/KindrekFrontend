@@ -34,8 +34,8 @@ export default function Chat() {
   const [isLoadingNewMessages, setIsLoadingNewMessages] = useState<boolean>(false);
   const [isLoadingOldMessages, setIsLoadingOldMessages] = useState<boolean>(false);
   
-  const [isTopReached, setIsTopReached] = useState<boolean>(false);
-  const [isBottomReached, setIsBottomReached] = useState<boolean>(false);
+  //const [isTopReached, setIsTopReached] = useState<boolean>(false);
+  //const [isBottomReached, setIsBottomReached] = useState<boolean>(false);
 
   const [newMessages, setNewMessages] = useState<ChatMessageType[]>([]);
   const [oldMessages, setOldMessages] = useState<ChatMessageType[]>([]);
@@ -76,7 +76,7 @@ export default function Chat() {
   const getNewMessages = async () => {
       //console.log('In getNewMessages', lastMessageIdRef.current)
       if (!lastMessageIdRef.current) {
-        setIsBottomReached(false)
+        //setIsBottomReached(false)
         return
       }
       //console.log("getNewMessages", corresponding_profile_id, lastMessageIdRef.current)
@@ -98,7 +98,7 @@ export default function Chat() {
       //console.log('in getOldMessages')
       const first_message_id = messages[0]?.id
       if (!first_message_id) {
-        setIsTopReached(false)
+        //setIsTopReached(false)
         return
       }
       setIsLoadingOldMessages(true)
@@ -112,7 +112,7 @@ export default function Chat() {
           console.error("Error fetching users:", err);
       }
       setIsLoadingOldMessages(false)
-      setIsTopReached(false)
+      //setIsTopReached(false)
   };
   const sendMessage = async () => {
       //alert(messageText)
