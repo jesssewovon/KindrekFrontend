@@ -25,7 +25,7 @@ moment.defineLocale('es', {
     months: 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split(
         '_'
     ),
-    monthsShort: function (m, format) {
+    /* monthsShort: function (m, format) {
         if (!m) {
             return monthsShortDot;
         } else if (/-MMM-/.test(format)) {
@@ -33,7 +33,18 @@ moment.defineLocale('es', {
         } else {
             return monthsShortDot[m.month()];
         }
-    },
+    }, */
+    monthsShort: ((m: moment.Moment, format?: string) => {
+        if (!m) {
+            return monthsShortDot as unknown as string;
+        }
+
+        if (format && /-MMM-/.test(format)) {
+            return monthsShort[m.month()];
+        }
+
+        return monthsShortDot[m.month()];
+    }),
     monthsRegex: monthsRegex,
     monthsShortRegex: monthsRegex,
     monthsStrictRegex:
@@ -55,7 +66,7 @@ moment.defineLocale('es', {
         LLL: 'D [de] MMMM [de] YYYY H:mm',
         LLLL: 'dddd, D [de] MMMM [de] YYYY H:mm',
     },
-    calendar: {
+    /* calendar: {
         sameDay: function () {
             return '[hoy a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
         },
@@ -76,6 +87,24 @@ moment.defineLocale('es', {
             );
         },
         sameElse: 'L',
+    }, */
+    calendar: {
+        sameDay(this: moment.Moment) {
+            return '[hoy a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
+        },
+        nextDay(this: moment.Moment) {
+            return '[mañana a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
+        },
+        nextWeek(this: moment.Moment) {
+            return 'dddd [a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
+        },
+        lastDay(this: moment.Moment) {
+            return '[ayer a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
+        },
+        lastWeek(this: moment.Moment) {
+            return '[el] dddd [pasado a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
+        },
+        sameElse: 'L'
     },
     relativeTime: {
         future: 'en %s',
@@ -96,7 +125,7 @@ moment.defineLocale('es', {
         yy: '%d años',
     },
     dayOfMonthOrdinalParse: /\d{1,2}º/,
-    ordinal: '%dº',
+    ordinal: (n: number) => `${n}º`,
     week: {
         dow: 1, // Monday is the first day of the week.
         doy: 4, // The week that contains Jan 4th is the first week of the year.

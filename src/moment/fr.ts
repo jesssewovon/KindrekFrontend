@@ -74,7 +74,7 @@ moment.defineLocale('fr', {
         yy: '%d ans',
     },
     dayOfMonthOrdinalParse: /\d{1,2}(er|)/,
-    ordinal: function (number, period) {
+    ordinal: function (number, period="d") {
         switch (period) {
             // TODO: Return 'e' when day of month > 1. Move this case inside
             // block for masculine words below.

@@ -64,8 +64,8 @@ moment.defineLocale('vi', {
         yy: '%d năm',
     },
     dayOfMonthOrdinalParse: /\d{1,2}/,
-    ordinal: function (number) {
-        return number;
+    ordinal: function (number: number) {
+        return number.toString();
     },
     week: {
         dow: 1, // Monday is the first day of the week.

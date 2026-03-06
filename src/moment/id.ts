@@ -16,7 +16,7 @@ moment.defineLocale('id', {
         LLLL: 'dddd, D MMMM YYYY [pukul] HH.mm',
     },
     meridiemParse: /pagi|siang|sore|malam/,
-    meridiemHour: function (hour, meridiem) {
+    meridiemHour: function (hour: number, meridiem: string) {
         if (hour === 12) {
             hour = 0;
         }

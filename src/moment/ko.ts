@@ -44,7 +44,7 @@ moment.defineLocale('ko', {
         yy: '%d년',
     },
     dayOfMonthOrdinalParse: /\d{1,2}(일|월|주)/,
-    ordinal: function (number, period) {
+    ordinal: function (number: number, period?: string): string {
         switch (period) {
             case 'd':
             case 'D':
@@ -56,7 +56,7 @@ moment.defineLocale('ko', {
             case 'W':
                 return number + '주';
             default:
-                return number;
+                return number.toString();
         }
     },
     meridiemParse: /오전|오후/,

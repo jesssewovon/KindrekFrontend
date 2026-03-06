@@ -1,5 +1,3 @@
-import en_countries from "./countries/en.json";
-import fr_countries from "./countries/fr.json";
 import en_json from "../../lang/en.json";
 import cn_json from "../../lang/cn.json";
 import es_json from "../../lang/es.json";
@@ -10,8 +8,6 @@ import id_json from "../../lang/id.json";
 import fi_json from "../../lang/fi.json";
 import ko_json from "../../lang/ko.json";
 
-const devise = "Test-π";
-
 export default {
   en: {
     translation: en_json
@@ -19,8 +15,6 @@ export default {
   cn: {
     translation: cn_json
   },
-  //vn: vn,
-  //ar: ar,
   ar: {
     translation: ar_json
   },
@@ -36,8 +30,6 @@ export default {
   ko: {
     translation: ko_json
   },
-  //id: id,
-  //fi: fi,
   es: {
     translation: es_json
   },

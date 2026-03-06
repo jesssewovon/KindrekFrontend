@@ -23,7 +23,7 @@ moment.defineLocale('zh-cn', {
         llll: 'YYYY年M月D日dddd HH:mm',
     },
     meridiemParse: /凌晨|早上|上午|中午|下午|晚上/,
-    meridiemHour: function (hour, meridiem) {
+    meridiemHour: function (hour: number, meridiem: string) {
         if (hour === 12) {
             hour = 0;
         }
@@ -52,7 +52,7 @@ moment.defineLocale('zh-cn', {
             return '晚上';
         }
     },
-    calendar: {
+    /* calendar: {
         sameDay: '[今天]LT',
         nextDay: '[明天]LT',
         nextWeek: function (now) {
@@ -71,9 +71,31 @@ moment.defineLocale('zh-cn', {
             }
         },
         sameElse: 'L',
+    }, */
+    calendar: {
+        sameDay: '[今天]LT',
+        nextDay: '[明天]LT',
+        nextWeek(m?: moment.MomentInput, now?: moment.Moment) {
+            const mMoment = moment(m); // cast MomentInput to Moment
+            if (now && now.week() !== mMoment.week()) {
+            return '[下]dddLT';
+            } else {
+            return '[本]dddLT';
+            }
+        },
+        lastDay: '[昨天]LT',
+        lastWeek(m?: moment.MomentInput, now?: moment.Moment) {
+            const mMoment = moment(m);
+            if (now && mMoment.week() !== now.week()) {
+            return '[上]dddLT';
+            } else {
+            return '[本]dddLT';
+            }
+        },
+        sameElse: 'L',
     },
     dayOfMonthOrdinalParse: /\d{1,2}(日|月|周)/,
-    ordinal: function (number, period) {
+    ordinal: function (number: number, period?: string): string {
         switch (period) {
             case 'd':
             case 'D':
@@ -85,7 +107,7 @@ moment.defineLocale('zh-cn', {
             case 'W':
                 return number + '周';
             default:
-                return number;
+                return number.toString();
         }
     },
     relativeTime: {
