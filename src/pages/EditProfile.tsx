@@ -622,7 +622,7 @@ export default function EditProfile() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <div className="radio style-2">
-            {sexualOrientation?.map(( {name, value} , index) => {
+            {sexualOrientation?.map(( {name} , index) => {
                 return (
                     <div key={index} className="form-check mb-3">
                         <input className="form-check-input" type="checkbox"
