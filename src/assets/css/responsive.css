@@ -1,0 +1,27 @@
+@media only screen and (max-width: 600px) {
+  .match-area.style-3 .match-inner .dz-media .left-media img, .match-area.style-3 .match-inner .dz-media .right-media img {
+    border-radius: 25px;
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .match-area .match-inner .dz-media{
+    height: 40vh;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+ 
+}
+
+@media only screen and (min-width: 768px) {
+  
+}
+@media only screen and (min-width: 1024px) {
+  
+}
+@media only screen and (min-width: 1280px) {
+  .last-msg{
+    width: 29vw;
+  }
+}

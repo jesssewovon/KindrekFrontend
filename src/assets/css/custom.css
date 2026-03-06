@@ -1,0 +1,96 @@
+.swal2-container {
+  z-index: 1060000!important;
+}
+.swal2-container, .swal2-container h1, .swal2-container h2, .swal2-container h3, .swal2-container h4{
+    color: inherit!important;
+}
+.loader-svg circle{
+    stroke: #000;
+}
+.theme-dark .loader-svg circle{
+    stroke: #fff;
+}
+.noUi-horizontal .noUi-handle {
+  width: 15px!important;
+  height: 15px!important;
+  border-radius: 50%!important;
+  border: 3px solid #ff50a2!important;
+}
+.noUi-horizontal .noUi-handle {
+  background-color: #fff!important;
+}
+.noUi-connect {
+  background: #ff50a2!important;
+}
+.noUi-horizontal {
+  height: 5px!important;
+}
+.noUi-horizontal .noUi-handle {
+  top: -5px!important;
+}
+.noUi-target{
+    border: none!important;
+}
+.selected-interest{
+  background-color: #ff50a2!important;
+}
+.selected-interest span{
+  color: #fff!important;
+}
+.welcome-area .get-started .swiper-wrapper {
+  margin-bottom: 0!important;
+}
+.swiper-pagination{
+  position: unset!important;
+}
+.text-blur{
+  filter: blur(4px);
+}
+
+.dz-gallery-slider .dz-content .left-content > ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.dz-gallery-slider .dz-content {
+  font-family: Poppins, sans-serif;
+}
+.dz-gallery-slider .dz-content .left-content > ul.intrest .badge {
+  background-color: rgba(255, 80, 162, 0.5);
+  border: 1px solid #ea3d85;
+  font-weight: 400;
+}
+
+.menubar-area .menubar-nav .nav-link::after{
+  z-index: -1;
+}
+.menubar-area .toolbar-inner .nav-link svg path{
+  stroke: #ff50a2;
+  stroke-width: 2.5px;
+}
+.menubar-area .toolbar-inner .nav-link.active svg path{
+  stroke: #fff;
+}
+
+.bg-gray-color{
+  background-color: #fff;
+}
+.theme-dark .bg-gray-color{
+  background-color: #2c2f39;
+}
+#message-icon path#Shape, #event-icon path{
+  fill: #141124;
+}
+.theme-dark #message-icon path#Shape, .theme-dark #event-icon path{
+  fill: #fff;
+}
+.subscription{
+  .st0{fill:#647EFF;} .st1{fill:#FFFFFF;} .st2{fill:#FFD77A;}
+}
+.last-msg{
+  width: 35vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}

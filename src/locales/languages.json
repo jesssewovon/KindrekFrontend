@@ -1,0 +1,82 @@
+[
+    {
+        "name": "English",
+        "code": "en",
+        "flag": "royaume-uni.png",
+        "country_code": "UK",
+        "active": true,
+        "order": 1
+    },
+    {
+        "name": "中国人",
+        "code": "cn",
+        "flag": "chine.png",
+        "country_code": "CN",
+        "active": true,
+        "order": 2
+    },
+    {
+        "name": "Tiếng Việt",
+        "code": "vn",
+        "flag": "vietnam.png",
+        "country_code": "VN",
+        "active": true,
+        "order": 3
+    },
+    {
+        "name": "Español",
+        "code": "es",
+        "flag": "espagne.png",
+        "country_code": "ES",
+        "active": true,
+        "order": 4
+    },
+    {
+        "name": "Français",
+        "code": "fr",
+        "flag": "france.png",
+        "country_code": "FR",
+        "active": true,
+        "order": 5
+    },
+    {
+        "name": "Italia",
+        "code": "it",
+        "flag": "italie.png",
+        "country_code": "IT",
+        "active": false,
+        "order": 6
+    },
+    {
+        "name": "عرب",
+        "code": "ar",
+        "flag": "united-arab-emirates.png",
+        "country_code": "AE",
+        "active": true,
+        "order": 7
+    },
+    {
+        "name": "Filipino",
+        "code": "fi",
+        "flag": "philippine.png",
+        "country_code": "PH",
+        "active": true,
+        "order": 8
+    },
+    {
+        "name": "Bahasa Indonesia",
+        "code": "id",
+        "flag": "indonesia.png",
+        "country_code": "ID",
+        "active": true,
+        "order": 9
+    },
+    {
+        "name": "한국어",
+        "code": "ko",
+        "flag": "south-korea-flag-square-xs.png",
+        "country_code": "KR",
+        "active": true,
+        "order": 10
+    }
+]
