@@ -18,7 +18,7 @@ moment.defineLocale('vi', {
     isPM: function (input) {
         return /^ch$/i.test(input);
     },
-    meridiem: function (hours, minutes, isLower) {
+    meridiem: function (hours, isLower) {
         if (hours < 12) {
             return isLower ? 'sa' : 'SA';
         } else {
