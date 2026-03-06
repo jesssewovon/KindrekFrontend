@@ -73,11 +73,9 @@ function NavigatorSetter() {
 
 function App() {
   // run code when changing page
-  useBeforeRouteChange((location) => {
-    //setShowScreenLoader(false)
+  useBeforeRouteChange(() => {
     dispatch(setShowScreenLoader(false))
     //console.log("useBeforeRouteChange", location)
-    //alert('useBeforeRouteChange')
   })
   
   // run version check at startup

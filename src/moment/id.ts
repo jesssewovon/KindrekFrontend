@@ -28,7 +28,7 @@ moment.defineLocale('id', {
             return hour + 12;
         }
     },
-    meridiem: function (hours, minutes, isLower) {
+    meridiem: function (hours) {
         if (hours < 11) {
             return 'pagi';
         } else if (hours < 15) {

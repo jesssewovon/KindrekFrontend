@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from "react-redux";
@@ -30,10 +30,10 @@ interface SwipeCardProps{
     nb?: number)=>void;
   disabled: boolean;
   remainingFreeSwiping: number;
-  isSwipingUnlimited: boolean;
+  isSwipingUnlimited?: boolean;
   subscriptionData: any;
 }
-export default function SwipeCard({ profile, onSwipe, disabled, remainingFreeSwiping, isSwipingUnlimited, subscriptionData }: SwipeCardProps) {
+export default function SwipeCard({ profile, onSwipe, disabled, remainingFreeSwiping, subscriptionData }: SwipeCardProps) {
   const dispatch = useDispatch<AppDispatch>();
   const {t} = useTranslation()
   const MotionDiv = motion.create("div");
@@ -49,7 +49,8 @@ export default function SwipeCard({ profile, onSwipe, disabled, remainingFreeSwi
   const opacityRight = useTransform(x, [0, 80], [0, 1]);
   //const opacityUp = useTransform(y, [-80, 0], [1, 0]);
 
-  const [dragging, setDragging] = useState(false);
+  //const [dragging, setDragging] = useState(false);
+  const setDragging = (val?: boolean)=>{console.log(val)};
 
   const [isSwiped, setIsSwiped] = useState(false);
 
@@ -67,29 +68,6 @@ export default function SwipeCard({ profile, onSwipe, disabled, remainingFreeSwi
       setIsSwiped(true);
       onSwipe?.("up", profile);
     }
-  };
-
-  // Programmatic swipe
-  const triggerSwipe = (direction: string) => {
-    //alert('here right Programmatic')
-    if (disabled || isSwiped) return;
-    //alert('fgbb')
-    let toX = 0;
-    let toY = 0;
-
-    if (direction === "right") toX = 300;
-    if (direction === "left") toX = -300;
-    if (direction === "up") toY = -300;
-
-    // Animate motion values
-    animate(x, toX, { duration: 0.4 });
-    animate(y, toY, { duration: 0.4 });
-
-    // Fire callback after short delay
-    setTimeout(() => {
-      setIsSwiped(true);
-      onSwipe?.(direction, profile);
-    }, 400);
   };
 
   const messageBeforeMatching = async (profile: ProfileState) => {

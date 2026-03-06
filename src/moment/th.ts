@@ -24,7 +24,7 @@ moment.defineLocale('th', {
     isPM: function (input) {
         return input === 'หลังเที่ยง';
     },
-    meridiem: function (hour, minute, isLower) {
+    meridiem: function (hour) {
         if (hour < 12) {
             return 'ก่อนเที่ยง';
         } else {

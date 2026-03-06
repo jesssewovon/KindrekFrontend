@@ -63,7 +63,7 @@ moment.defineLocale('ko', {
     isPM: function (token) {
         return token === '오후';
     },
-    meridiem: function (hour, minute, isUpper) {
+    meridiem: function (hour) {
         return hour < 12 ? '오전' : '오후';
     },
 });
