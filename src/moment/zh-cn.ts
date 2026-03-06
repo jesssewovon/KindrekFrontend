@@ -36,7 +36,7 @@ moment.defineLocale('zh-cn', {
             return hour >= 11 ? hour : hour + 12;
         }
     },
-    meridiem: function (hour, minute, isLower) {
+    meridiem: function (hour, minute) {
         var hm = hour * 100 + minute;
         if (hm < 600) {
             return '凌晨';
