@@ -5,12 +5,12 @@ import MenuBar from '../components/MenuBar';
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { signinPiketplace, piPayment } from '../store/userSlice';
+import { signinPiketplace } from '../store/userSlice';
 import { useTranslation } from "react-i18next";
 import { useEffect } from 'react';
 
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+//import Swal from 'sweetalert2'
+//import withReactContent from 'sweetalert2-react-content'
 import Loader from '../components/Loader';
 import { navigate } from '../navigationService';
 
@@ -25,7 +25,7 @@ import type { AppDispatch, RootState } from '../store';
 import type { GeolocationType } from '../types';
 
 export default function Profile() {
-  const MySwal = withReactContent(Swal);
+  //const MySwal = withReactContent(Swal);
   const { t, i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage("fr")
@@ -36,20 +36,6 @@ export default function Profile() {
       (state: RootState) => state.user.geolocation
   );
   const handleLogin = async () => {
-      const scopes = ["username", "payments", "wallet_address", "preferred_language"];
-      const onIncompletePaymentFound = (payment: any) =>{
-          //console.log('signin onIncompletePaymentFound', payment)
-          const txid = payment.transaction.txid;
-          const txUrl = payment.transaction._link;
-          const paymentId = payment.identifier;
-          const data = {
-              paymentId:paymentId,
-              txid:txid,
-          }
-          //self.executePaymentCompletion(data)
-          //We're not allowed to cancel a payment after approve
-          //this.dispatch('cancelPayment', data)
-      };
     dispatch(signinPiketplace(geolocation));
   };
 
@@ -159,7 +145,7 @@ export default function Profile() {
                         modules={[Autoplay, Pagination, Navigation]}
                         className="mySwiper get-started"
                     >
-                        {settings?.subscriptions?.map((subscription: any, index: number) => (
+                        {settings?.subscriptions?.map((subscription: any) => (
                             <SwiperSlide key={subscription.id}>
                                 <div className="dz-content">
                                   <h5 className="title">{subscription.name}</h5>

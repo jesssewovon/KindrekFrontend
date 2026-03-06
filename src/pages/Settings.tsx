@@ -1,16 +1,12 @@
-import { Link } from 'react-router';
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import Header from '../components/Header';
 import { useSelector, useDispatch } from 'react-redux';
-import { setIsLoading, setIsSaving, hideOffcanvas, setUser } from "../store/userSlice";
+import { setIsLoading, setIsSaving } from "../store/userSlice";
 import { updateProfile } from "../store/profileFormSlice";
 import api from "../api";
-import Loader from '../components/Loader';
 import LoaderWhite from '../components/LoaderWhite';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useTranslation } from 'react-i18next';
-import { navigate } from "../navigationService";
-import Button from 'react-bootstrap/Button';
 
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
@@ -20,7 +16,7 @@ import type { ProfileState } from '../types';
 export default function EditProfile() {
   const dispatch = useDispatch<AppDispatch>();
   const {t} = useTranslation()
-  const { isLoggedIn, isLoading, user, isSaving } = useSelector((state: RootState) => state.user);
+  const { isLoading, isSaving } = useSelector((state: RootState) => state.user);
   
   const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
   const [profile, setProfile] = useState<ProfileState>(profileForm);

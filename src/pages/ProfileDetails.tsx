@@ -1,7 +1,6 @@
-import { Link, useParams } from 'react-router';
+import { useParams } from 'react-router';
 
 import Header from '../components/Header';
-import MenuBar from '../components/MenuBar';
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,7 +10,6 @@ import { useEffect, useState } from 'react';
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import Loader from '../components/Loader';
 import MatchModal from '../components/MatchModal';
 import ScreenLoader from "../components/ScreenLoader";
 
@@ -31,16 +29,18 @@ export default function ProfileDetails() {
   const MySwal = withReactContent(Swal);
   const { id } = useParams();
   const profileId = id as string;
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
-  const { isLoggedIn, isLoading, user } = useSelector((state: RootState) => state.user);
+  const { isLoading, user } = useSelector((state: RootState) => state.user);
 
   const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
   const [profile, setProfile] = useState<ProfileState>(profileForm);
   const [reaction, setReaction] = useState({});
 
-  const [subscriptionData, setSubscriptionData] = useState<any>(user?.profile?.subscriptionData);
-  const [remainingSwiping, setRemainingSwiping] = useState<number>(user?.profile?.remainingFreeSwiping);
+  //const [subscriptionData, setSubscriptionData] = useState<any>(user?.profile?.subscriptionData);
+  const subscriptionData = user?.profile?.subscriptionData;
+  //const [remainingSwiping, setRemainingSwiping] = useState<number>(user?.profile?.remainingFreeSwiping);
+  const remainingSwiping = user?.profile?.remainingFreeSwiping;
   const [show, setShow] = useState<boolean>(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

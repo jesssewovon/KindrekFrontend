@@ -152,7 +152,7 @@ export default function Home({ savedScroll, onSaveScroll }: HomeProps) {
             console.log('res fetchProfiles', res.data)
             setProfiles(res.data.profiles.data); // adjust to your API structure
             if (res.data.profiles.data.length==0) {
-                setPage((p) => 1);
+                setPage(1);
             }
         } catch (err) {
             console.error("Error fetching profiles:", err);

@@ -1,21 +1,13 @@
-import { Link, useParams } from 'react-router';
-
 import Header from '../components/Header';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
-import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
-import { setIsLoading, setIsSaving, setDateFilter,
-  setUser, setReloadHomePage, 
-} from "../store/userSlice";
-import { changeLanguage, piPayment, 
+import { setIsSaving, 
 } from "../store/userSlice";
 //import { navigate } from "../navigationService";
 import { useNavigate, useLocation } from 'react-router';
 import api from "../api";
-import Loader from '../components/Loader';
 import LoaderWhite from '../components/LoaderWhite';
 
 import Swal from 'sweetalert2'
@@ -23,14 +15,13 @@ import withReactContent from 'sweetalert2-react-content'
 import type { AppDispatch, RootState } from '../store';
 
 export default function PaymentVerification() {
-  const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate()
   const {t} = useTranslation()
   const location = useLocation();
   const MySwal = withReactContent(Swal);
 
-  const { isLoggedIn, isLoading, user, dateFilter, isSaving } = useSelector((state: RootState) => state.user);
+  const { isSaving } = useSelector((state: RootState) => state.user);
 
   // Load data on page change
   useEffect(() => {

@@ -1,12 +1,10 @@
-import { Link, useParams } from 'react-router';
+import { useParams } from 'react-router';
 
 import Header from '../components/Header';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
-import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
 import { setIsLoading, 
 } from "../store/userSlice";
 import { piPayment, 
@@ -24,7 +22,7 @@ export default function SubscriptionDetails() {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate()
   const {t} = useTranslation()
-  const { isLoggedIn, isLoading, user, dateFilter } = useSelector((state: RootState) => state.user);
+  const { isLoading, user } = useSelector((state: RootState) => state.user);
 
   const [subscription, setSubscription] = useState<any>(null);
   const [selectedPeriod, setSelectedPeriod] = useState<any>(null);

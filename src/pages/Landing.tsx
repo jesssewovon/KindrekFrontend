@@ -1,20 +1,15 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import api from "../api";
-import { setIsLoading, setGeolocation,
+import { setGeolocation,
     setIsSaving, 
 } from "../store/userSlice";
-import { signinPiketplace, 
-    changeLanguage, showPiAdInterstitial, 
+import { signinPiketplace, showPiAdInterstitial, 
 } from "../store/userSlice";
 //import { navigate } from "../navigationService";
-import i18n from "../i18n"; // your i18n config
 
-import Loader from '../components/Loader';
 import LoaderWhite from '../components/LoaderWhite';
 import SwitchLanguage from '../components/SwitchLanguage';
-import { useNavigate } from "react-router";
 import { useTranslation } from 'react-i18next';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -26,10 +21,9 @@ import type { AppDispatch, RootState } from "../store";
 import type { GeolocationType } from "../types";
 
 export default function Landing() {
-    const navigate = useNavigate()
     const dispatch = useDispatch<AppDispatch>()
     const {t} = useTranslation()
-    const { isLoading, isLoggedIn, isSaving, error } = useSelector((state: RootState) => state.user);
+    const { isLoggedIn, isSaving } = useSelector((state: RootState) => state.user);
     //const {geolocation} = useSelector((state: RootState) => state.user);
     const geolocation: GeolocationType|null = useSelector(
         (state: RootState) => state.user.geolocation
@@ -63,9 +57,6 @@ export default function Landing() {
         } else {
             console.error("Geolocation is not supported by this browser.");
         }
-    };
-    const updateLanguage = async () => {
-        dispatch(changeLanguage('cn'))
     };
     
     useEffect(() => {

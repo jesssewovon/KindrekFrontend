@@ -2,17 +2,12 @@ import { Link } from 'react-router';
 
 import Header from '../components/Header';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
-import Nouislider from "nouislider-react";
-import "nouislider/distribute/nouislider.css";
 import { setIsLoading, 
 } from "../store/userSlice";
-import { piPayment, 
-} from "../store/userSlice";
 //import { navigate } from "../navigationService";
-import { useNavigate } from 'react-router';
 import api from "../api";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -24,9 +19,8 @@ import type { AppDispatch, RootState } from '../store';
 
 export default function Subscriptions() {
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate()
   const {t} = useTranslation()
-  const { isLoggedIn, isLoading, user, dateFilter } = useSelector((state: RootState) => state.user);
+  const { isLoading } = useSelector((state: RootState) => state.user);
 
   const swiperRef = useRef<any>(null);
   const [subscriptions, setSubscriptions] = useState<any>([]);
@@ -53,19 +47,6 @@ export default function Subscriptions() {
     console.log('swiperRef', swiperRef)
     //dispatch(changeLanguage('fr'))
   }, []);
-
-  const makePayment = (subscription: any) => {
-      //alert('makepaiement')
-      dispatch(piPayment({
-          amount: subscription.amount,
-          memo: `Subscription ${subscription.name}`,
-          metadata: {
-              userId: user.id,
-              type: 'subscription',
-              subscriptions_id: subscription.id,
-          },
-      }));
-  };
 
   if (isLoading) {
       return (
@@ -115,7 +96,7 @@ export default function Subscriptions() {
                       modules={[Autoplay, Pagination, Navigation]}
                       className="mySwiper get-started"
                   >
-                      {subscriptions?.map((subscription: any, index: number) => (
+                      {subscriptions?.map((subscription: any) => (
                           <SwiperSlide key={`slider${subscription.id}`}>
                               <div className={`subscribe-box ${subscription?.code}`}>
                                 <h3 className="title">{subscription.name}</h3>
@@ -134,7 +115,7 @@ export default function Subscriptions() {
                   subscriptionIndex === index && (<div key={subscription.id} className={`subscribe-content ${subscription?.code}`}>
                     <ul className="pricing-data">
                       {
-                        subscription?.contents?.map((content: any, index1: number) => (
+                        subscription?.contents?.map((content: any) => (
                           <li className="list-true">
                             {((content.item.type=='boolean' && content.value==1)) && (<i className="icon feather icon-check"></i>)}
                             {((content.item.type=='boolean' && content.value==0) || (content.item.type=='int' && content.value==0)) && (<i className="icon feather icon-lock"></i>)}

@@ -1,7 +1,4 @@
-import { Link } from 'react-router';
-
-import { useState, useRef, useEffect, useCallback } from "react";
-import SwipeDeck from "../components/SwipeDeck";
+import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
 import { useActivate, useUnactivate } from "react-activation";
@@ -9,8 +6,6 @@ import { useActivate, useUnactivate } from "react-activation";
 import api from "../api";
 import Header from "../components/Header";
 import MenuBar from '../components/MenuBar';
-import Loader from "../components/Loader";
-import { setIsLoading, setReloadHomePage } from "../store/userSlice";
 //import { setReactions } from "../store/profileFormSlice";
 import { navigate } from "../navigationService";
 import type { RootState } from '../store';
@@ -22,7 +17,7 @@ interface WishListProps{
 
 export default function WishList({ savedScroll, onSaveScroll }: WishListProps) {
   const {t} = useTranslation()
-  const { isLoading, dateFilter, reloadHomePage, user, isLoggedIn } = useSelector((state: RootState) => state.user);
+  const { user } = useSelector((state: RootState) => state.user);
   const [crushes, setCrushes] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
   const [lastPage, setLastPage] = useState<number>(0);
@@ -34,7 +29,7 @@ export default function WishList({ savedScroll, onSaveScroll }: WishListProps) {
   const containerRef = useRef<any>(null)
   const bottomRef = useRef<any>(null)
 
-  const onScroll = (e: Event): void => {
+  const onScroll = (): void => {
     onSaveScroll(window.scrollY);
   };
 
@@ -100,7 +95,7 @@ export default function WishList({ savedScroll, onSaveScroll }: WishListProps) {
     //console.log('new value for crushes', crushes, page)
     if (reinitList) {
       setReinitList(false)
-      page!==1?setPage((p) => 1):fetchCrushes(1)
+      page!==1?setPage(1):fetchCrushes(1)
     }
   }, [crushes]);
   // Load data on crushes array change
@@ -109,12 +104,6 @@ export default function WishList({ savedScroll, onSaveScroll }: WishListProps) {
   }, [page]);
 
   useEffect(() => {
-    const options = {
-      root: containerRef.current, // the scrollable div
-      rootMargin: "0px",
-      threshold: 0.1,
-    };
-
     const bottomObserver = new IntersectionObserver((entries) => {
       console.log('gffffffffffffffffffff')
       if (entries[0].isIntersecting && !loading && lastPage>page) {
