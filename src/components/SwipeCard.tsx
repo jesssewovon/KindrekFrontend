@@ -1,7 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useState } from "react";
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from "react-redux";
 
 import '../assets/scss/pages/_tinder-swiper.scss';
 
@@ -18,10 +17,10 @@ import api from "../api";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import type { ProfileState } from "../types";
-import type { AppDispatch } from "../store";
 const MySwal = withReactContent(Swal);
 
 import MotionLazyImage from "./MotionLazyImage";
+import { useAppDispatch } from "../hooks/reduxHooks";
 
 interface SwipeCardProps{
   profile: ProfileState;
@@ -34,7 +33,7 @@ interface SwipeCardProps{
   subscriptionData: any;
 }
 export default function SwipeCard({ profile, onSwipe, disabled, remainingFreeSwiping, subscriptionData }: SwipeCardProps) {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const {t} = useTranslation()
   const MotionDiv = motion.create("div");
 

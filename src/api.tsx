@@ -1,7 +1,7 @@
 // api.js
 import axios from "axios";
 
-import { store } from "./store";
+import { getStore } from "./storeAccessor";
 import { loggedUserOut, setSettings, setUser } from "./store/userSlice";
 
 import { navigate } from "./navigationService";
@@ -22,7 +22,7 @@ api.interceptors.request.use(
   (config) => {
     // Example: add token if exists
     //const token = localStorage.getItem("token");
-    const state = store.getState(); // 👈 access store var
+    const state = getStore().getState(); // 👈 access store var
     const token = state.user?.token; // 👈 access store var
     //alert(token)
     if (token) {
@@ -38,12 +38,12 @@ api.interceptors.response.use(
   (response) => {
     //console.log('interceptors api', response.data)
     if (response.data.settings_user) {
-      store.dispatch(setSettings(response.data.settings_user));
+      getStore().dispatch(setSettings(response.data.settings_user));
     }
     if (response.data.current_user_for_automatic_update) {
       //console.log('current_user_for_automatic_update', response.data)
       //alert('current_user_for_automatic_update')
-      store.dispatch(setUser(response.data.current_user_for_automatic_update));
+      getStore().dispatch(setUser(response.data.current_user_for_automatic_update));
     }
     if(response.data.redirectTo) {
         //alert('redirectTo')
@@ -56,7 +56,7 @@ api.interceptors.response.use(
     console.log('error interceptor', error.response)
     if (error.response?.status === 401) {
       // Example: redirect to login
-      store.dispatch(loggedUserOut());
+      getStore().dispatch(loggedUserOut());
       //window.location.href = "/profile";
       navigate("/");  // ✅ redirect on 401
       try {

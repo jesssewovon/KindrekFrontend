@@ -2,8 +2,6 @@ import { useParams } from 'react-router';
 
 import Header from '../components/Header';
 
-import { useSelector, useDispatch } from "react-redux";
-
 import { setIsLoading, setShowScreenLoader } from '../store/userSlice';
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from 'react';
@@ -22,18 +20,18 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import type { AppDispatch, RootState } from '../store';
-import type { ProfileState } from '../types';
+import { useAppSelector, type ProfileState } from '../types';
+import { useAppDispatch } from '../hooks/reduxHooks';
 
 export default function ProfileDetails() {
   const MySwal = withReactContent(Swal);
   const { id } = useParams();
   const profileId = id as string;
   const { t } = useTranslation();
-  const dispatch = useDispatch<AppDispatch>();
-  const { isLoading, user } = useSelector((state: RootState) => state.user);
+  const dispatch = useAppDispatch();
+  const { isLoading, user } = useAppSelector((state) => state.user);
 
-  const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
+  const profileForm: ProfileState = useAppSelector((state) => state.profileForm);
   const [profile, setProfile] = useState<ProfileState>(profileForm);
   const [reaction, setReaction] = useState({});
 

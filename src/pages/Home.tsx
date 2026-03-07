@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import SwipeDeck from "../components/SwipeDeck";
-import { useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
 import { useActivate, useUnactivate, useAliveController } from "react-activation";
 
@@ -17,8 +16,7 @@ import { useLocation, useNavigate } from "react-router";
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import type { RootState } from "../store";
-import type { ProfileState } from "../types";
+import { useAppSelector, type ProfileState } from "../types";
 const MySwal = withReactContent(Swal);
 
 interface HomeProps{
@@ -29,8 +27,8 @@ interface HomeProps{
 export default function Home({ savedScroll, onSaveScroll }: HomeProps) {
   const {t} = useTranslation()
   const {drop} = useAliveController()
-  const { dateFilter, user, isLoggedIn } = useSelector((state: RootState) => state.user);
-  //const { reactions } = useSelector((state) => state.profileForm);
+  const { dateFilter, user, isLoggedIn } = useAppSelector((state) => state.user);
+  //const { reactions } = useAppSelector((state) => state.profileForm);
   const [profiles, setProfiles] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);

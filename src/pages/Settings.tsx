@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Header from '../components/Header';
-import { useSelector, useDispatch } from 'react-redux';
 import { setIsLoading, setIsSaving } from "../store/userSlice";
 import { updateProfile } from "../store/profileFormSlice";
 import api from "../api";
@@ -10,15 +9,15 @@ import { useTranslation } from 'react-i18next';
 
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
-import type { AppDispatch, RootState } from '../store';
-import type { ProfileState } from '../types';
+import { useAppSelector, type ProfileState } from '../types';
+import { useAppDispatch } from "../hooks/reduxHooks";
 
 export default function EditProfile() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const {t} = useTranslation()
-  const { isLoading, isSaving } = useSelector((state: RootState) => state.user);
+  const { isLoading, isSaving } = useAppSelector((state) => state.user);
   
-  const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
+  const profileForm: ProfileState = useAppSelector((state) => state.profileForm);
   const [profile, setProfile] = useState<ProfileState>(profileForm);
   const [genders, setGenders] = useState<string[]>([]);
 

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import { piPayment } from "../store/userSlice";
 //import { navigate } from "../../navigationService";
@@ -7,13 +6,14 @@ import { useNavigate } from "react-router";
 import Header from '../components/Header';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
-import type { AppDispatch, RootState } from "../store";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { useAppSelector } from "../types";
 
 export default function FirstName() {
     const navigate = useNavigate();
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
     const {t} = useTranslation()
-    const { isLoggedIn, user } = useSelector((state: RootState) => state.user);
+    const { isLoggedIn, user } = useAppSelector((state) => state.user);
 
     const [amount, setAmount] = useState(1)
     

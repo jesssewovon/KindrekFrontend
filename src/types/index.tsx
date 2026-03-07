@@ -1,4 +1,7 @@
 //import { LatLngExpression } from "leaflet";
+import { useSelector } from "react-redux";
+import type { TypedUseSelectorHook } from "react-redux";
+import type { RootState } from "../store";
 
 export interface UserState {
   user: any|null,
@@ -59,3 +62,4 @@ export interface ChatMessageType {
   sender_profiles_id: number;
   created_at: string;
 }
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

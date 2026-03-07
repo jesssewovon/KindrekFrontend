@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from "react-redux";
 import Header from '../components/Header';
 import MenuBar from '../components/MenuBar';
 
@@ -11,16 +10,16 @@ import { setShowScreenLoader } from "../store/userSlice";
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import type { AppDispatch } from '../store';
+import { useAppDispatch } from "../hooks/reduxHooks";
 const MySwal = withReactContent(Swal);
 
 export default function Explore() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const {t} = useTranslation()
 
   /* const { isLoading, dateFilter, reloadHomePage,
     user, isLoggedIn, showScreenLoader
-  } = useSelector((state: RootState) => state.user); */
+  } = useAppSelector((state) => state.user); */
 
   const [openLoading, setOpenLoading] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(false);

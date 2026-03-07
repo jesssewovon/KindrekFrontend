@@ -2,8 +2,6 @@ import { Link } from 'react-router';
 import { useState } from "react";
 import { useTheme } from "../ThemeContext";
 
-import { useSelector, useDispatch } from "react-redux";
-
 import { setIsDarkTheme } from "../store/userSlice";
 import { signinPiketplace, signoutPiketplace } from "../store/userSlice";
 import { useTranslation } from 'react-i18next';
@@ -11,16 +9,16 @@ import SwitchLanguage from './SwitchLanguage';
 
 
 import Loader from './Loader';
-import type { AppDispatch, RootState } from '../store';
-import type { GeolocationType } from '../types';
+import { useAppSelector, type GeolocationType } from '../types';
+import { useAppDispatch } from '../hooks/reduxHooks';
 
 export default function SideBar() {
 	const {t} = useTranslation()
 	const { isSideBarOpen, setSideBarStatus } = useTheme();
-	const dispatch = useDispatch<AppDispatch>();
-    const { isDarkTheme, user, isLoggedIn, isLoading, settings } = useSelector((state: RootState) => state.user);
-	const geolocation: GeolocationType|null = useSelector(
-		(state: RootState) => state.user.geolocation
+	const dispatch = useAppDispatch();
+    const { isDarkTheme, user, isLoggedIn, isLoading, settings } = useAppSelector((state) => state.user);
+	const geolocation: GeolocationType|null = useAppSelector(
+		(state) => state.user.geolocation
 	);
 	const [showLanguageOffCanvas, setShowLanguageOffCanvas] = useState(false);
 	const handleLanguageOffCanvasShow = () => {

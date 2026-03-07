@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import api from "../../api";
 import i18n from "../../i18n";
@@ -18,13 +17,13 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal);
 
-import type { AppDispatch, RootState } from "../../store";
-import type { ProfileState } from "../../types";
+import { useAppSelector, type ProfileState } from "../../types";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 
 export default function Images() {
-    const dispatch = useDispatch<AppDispatch>();
-    const { isLoggedIn, isSaving } = useSelector((state: RootState) => state.user);
-    const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
+    const dispatch = useAppDispatch();
+    const { isLoggedIn, isSaving } = useAppSelector((state) => state.user);
+    const profileForm: ProfileState = useAppSelector((state) => state.profileForm);
     console.log('profileForm.images', profileForm.images)
     
     useEffect(() => {

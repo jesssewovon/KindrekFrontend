@@ -2,7 +2,6 @@ import { useNavigate, useParams } from 'react-router';
 
 import { useTranslation } from "react-i18next";
 import { useEffect, useState, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
 //import Swal from 'sweetalert2'
 //import withReactContent from 'sweetalert2-react-content'
@@ -15,17 +14,17 @@ import api from "../api";
 import moment from 'moment';
 
 import { setIsSaving } from '../store/userSlice';
-import type { RootState } from '../store';
-import type { ChatMessageType, ProfileState } from '../types';
+import { useAppSelector, type ChatMessageType, type ProfileState } from '../types';
+import { useAppDispatch } from '../hooks/reduxHooks';
 
 export default function Chat() {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { corresponding_profile_id } = useParams();
-  const { user, isSaving } = useSelector((state: RootState) => state.user);
+  const { user, isSaving } = useAppSelector((state) => state.user);
 
-  const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
+  const profileForm: ProfileState = useAppSelector((state) => state.profileForm);
   const [profile, setProfile] = useState<ProfileState>(profileForm);
   const [correspondingProfile, setCorrespondingProfile] = useState<ProfileState|null>(null);
   const [messages, setMessages] = useState<ChatMessageType[]>([]);

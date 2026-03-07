@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
 /* import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -21,13 +20,13 @@ import 'swiper/swiper-bundle.css';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 import moment from 'moment';
-import type { RootState } from '../store';
-import type { ProfileState } from '../types';
+import { useAppSelector, type ProfileState } from '../types';
+import { useAppDispatch } from '../hooks/reduxHooks';
 
 export default function ChatList() {
   //const { t, i18n } = useTranslation();
-  const dispatch = useDispatch();
-  const { isLoading, user } = useSelector((state: RootState) => state.user);
+  const dispatch = useAppDispatch();
+  const { isLoading, user } = useAppSelector((state) => state.user);
 
   const [chatList, setChatList] = useState([]);
   const [onlineList, setOnlineList] = useState<ProfileState[]>([]);

@@ -1,7 +1,6 @@
 import { useParams } from 'react-router';
 
 import Header from '../components/Header';
-import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
@@ -14,21 +13,21 @@ import { useNavigate } from 'react-router';
 import api from "../api";
 
 import { v4 as uuidv4 } from 'uuid';
-import type { AppDispatch, RootState } from '../store';
-import type { ProfileState } from '../types';
+import { useAppSelector, type ProfileState } from '../types';
+import { useAppDispatch } from '../hooks/reduxHooks';
 
 export default function SubscriptionDetails() {
   const { id } = useParams();
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate()
   const {t} = useTranslation()
-  const { isLoading, user } = useSelector((state: RootState) => state.user);
+  const { isLoading, user } = useAppSelector((state) => state.user);
 
   const [subscription, setSubscription] = useState<any>(null);
   const [selectedPeriod, setSelectedPeriod] = useState<any>(null);
   const [isActiveSubscription, setIsActiveSubscription] = useState<boolean>(false);
     
-  const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
+  const profileForm: ProfileState = useAppSelector((state) => state.profileForm);
   const [profile, setProfile] = useState<ProfileState>(profileForm);
 
   // Get my profile from API

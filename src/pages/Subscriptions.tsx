@@ -1,7 +1,6 @@
 import { Link } from 'react-router';
 
 import Header from '../components/Header';
-import { useSelector, useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
@@ -15,12 +14,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import type { AppDispatch, RootState } from '../store';
+import { useAppDispatch } from '../hooks/reduxHooks';
+import { useAppSelector } from '../types';
 
 export default function Subscriptions() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const {t} = useTranslation()
-  const { isLoading } = useSelector((state: RootState) => state.user);
+  const { isLoading } = useAppSelector((state) => state.user);
 
   const swiperRef = useRef<any>(null);
   const [subscriptions, setSubscriptions] = useState<any>([]);

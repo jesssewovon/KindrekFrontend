@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 //import { useTranslation } from 'react-i18next';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
@@ -10,7 +9,7 @@ import {
 import i18n from "../i18n"; // your i18n config
 
 import moment from 'moment';
-import type { AppDispatch } from '../store';
+import { useAppDispatch } from "../hooks/reduxHooks";
 
 /* import 'moment/locale/es';
 import 'moment/locale/ar';
@@ -23,7 +22,7 @@ interface SwitchLanguageProps{
 }
 
 function SwitchLanguage({showLanguageOffCanvas, handleLanguageOffCanvasClose}: SwitchLanguageProps) {
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
     //const {t} = useTranslation()
     const [show, setShow] = useState(showLanguageOffCanvas)
 

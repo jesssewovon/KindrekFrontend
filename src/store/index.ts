@@ -7,7 +7,7 @@ import { combineReducers } from "redux";
 /*import cartReducer from "./cartSlice";*/
 import userReducer from "./userSlice";
 import profileFormReducer from "./profileFormSlice";
-
+import { injectStore } from "../storeAccessor";
 import { initialState as profileFormInitialState } from "./profileFormSlice"; // export it
 
 const persistConfig = {
@@ -38,8 +38,9 @@ export const store = configureStore({
     }),
     preloadedState,
 });
+injectStore(store); // 👈 inject store
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch
 
 export const persistor = persistStore(store);

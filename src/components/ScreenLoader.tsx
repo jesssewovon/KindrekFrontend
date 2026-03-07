@@ -1,8 +1,7 @@
-import { useSelector } from 'react-redux';
-import type { RootState } from '../store';
+import { useAppSelector } from '../types';
 
 export default function ScreenLoader() {
-    const { showScreenLoader } = useSelector((state: RootState) => state.user);
+    const { showScreenLoader } = useAppSelector((state) => state.user);
     return (
         <>
             {showScreenLoader && (<div style={{position: "fixed", top: "0", zIndex: "999999", width: "100vw", height: "100vh", backgroundColor: "rgba(0,0,0,0.7)"}}>

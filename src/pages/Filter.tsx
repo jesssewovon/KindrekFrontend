@@ -1,5 +1,4 @@
 import Header from '../components/Header';
-import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
@@ -9,16 +8,16 @@ import { setIsLoading, setDateFilter,
 //import { navigate } from "../navigationService";
 import { useNavigate } from 'react-router';
 import api from "../api";
-import type { AppDispatch, RootState } from '../store';
-import type { ProfileState } from '../types';
+import { useAppSelector, type ProfileState } from '../types';
+import { useAppDispatch } from '../hooks/reduxHooks';
 
 export default function Filter() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate()
   const {t} = useTranslation()
-  const { isLoading, dateFilter } = useSelector((state: RootState) => state.user);
+  const { isLoading, dateFilter } = useAppSelector((state) => state.user);
   
-  const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
+  const profileForm: ProfileState = useAppSelector((state) => state.profileForm);
   const [profile, setProfile] = useState<ProfileState>(profileForm);
   const [genders, setGenders] = useState([]);
 

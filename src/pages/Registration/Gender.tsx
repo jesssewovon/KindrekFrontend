@@ -1,16 +1,15 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import { navigate } from "../../navigationService";
-import type { RootState } from "../../store";
-import type { ProfileState } from "../../types";
+import { useAppSelector, type ProfileState } from "../../types";
 
 import { updateField } from "../../store/profileFormSlice";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 
 export default function Gender() {
-    const dispatch = useDispatch();
-    const { isLoggedIn } = useSelector((state: RootState) => state.user);
-    const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
+    const dispatch = useAppDispatch();
+    const { isLoggedIn } = useAppSelector((state) => state.user);
+    const profileForm: ProfileState = useAppSelector((state) => state.profileForm);
     useEffect(() => {
       if (isLoggedIn) {
         //navigate('/home')

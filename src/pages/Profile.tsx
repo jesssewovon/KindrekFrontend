@@ -3,8 +3,6 @@ import { Link } from 'react-router';
 import Header from '../components/Header';
 import MenuBar from '../components/MenuBar';
 
-import { useSelector, useDispatch } from "react-redux";
-
 import { signinPiketplace } from '../store/userSlice';
 import { useTranslation } from "react-i18next";
 import { useEffect } from 'react';
@@ -21,8 +19,8 @@ import 'swiper/swiper-bundle.css';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 import moment from 'moment'
-import type { AppDispatch, RootState } from '../store';
-import type { GeolocationType } from '../types';
+import { useAppSelector, type GeolocationType } from '../types';
+import { useAppDispatch } from '../hooks/reduxHooks';
 
 export default function Profile() {
   //const MySwal = withReactContent(Swal);
@@ -30,10 +28,10 @@ export default function Profile() {
   useEffect(() => {
     i18n.changeLanguage("fr")
   }, [i18n])
-  const dispatch = useDispatch<AppDispatch>();
-  const { isLoggedIn, isLoading, user, settings } = useSelector((state: RootState) => state.user);
-  const geolocation: GeolocationType|null = useSelector(
-      (state: RootState) => state.user.geolocation
+  const dispatch = useAppDispatch();
+  const { isLoggedIn, isLoading, user, settings } = useAppSelector((state) => state.user);
+  const geolocation: GeolocationType|null = useAppSelector(
+      (state) => state.user.geolocation
   );
   const handleLogin = async () => {
     dispatch(signinPiketplace(geolocation));

@@ -1,6 +1,5 @@
 import Header from '../components/Header';
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { setIsLoading } from "../store/userSlice";
 import { updateProfile } from "../store/profileFormSlice";
 import api from "../api";
@@ -11,15 +10,15 @@ import { useTranslation } from 'react-i18next';
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import type { AppDispatch, RootState } from '../store';
-import type { ProfileState } from '../types';
+import { useAppSelector, type ProfileState } from '../types';
+import { useAppDispatch } from '../hooks/reduxHooks';
 const MySwal = withReactContent(Swal);
 
 export default function EditProfile() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const {t} = useTranslation()
-  const { isLoading, user, settings, isSaving } = useSelector((state: RootState) => state.user);
-  const profileForm: ProfileState = useSelector((state: RootState) => state.profileForm);
+  const { isLoading, user, settings, isSaving } = useAppSelector((state) => state.user);
+  const profileForm: ProfileState = useAppSelector((state) => state.profileForm);
   console.log('profileForm', profileForm)
 
   //const [subscriptionData, setSubscriptionData] = useState(user.profile?.subscriptionData);

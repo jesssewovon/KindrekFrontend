@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import { setGeolocation,
     setIsSaving, 
@@ -17,15 +16,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import type { AppDispatch, RootState } from "../store";
-import type { GeolocationType } from "../types";
+import type { RootState } from "../store";
+import { useAppSelector, type GeolocationType } from "../types";
+import { useAppDispatch } from "../hooks/reduxHooks";
 
 export default function Landing() {
-    const dispatch = useDispatch<AppDispatch>()
+    const dispatch = useAppDispatch()
     const {t} = useTranslation()
-    const { isLoggedIn, isSaving } = useSelector((state: RootState) => state.user);
-    //const {geolocation} = useSelector((state: RootState) => state.user);
-    const geolocation: GeolocationType|null = useSelector(
+    const { isLoggedIn, isSaving } = useAppSelector((state) => state.user);
+    const geolocation: GeolocationType|null = useAppSelector(
         (state: RootState) => state.user.geolocation
     );
     
@@ -66,7 +65,7 @@ export default function Landing() {
       if (isLoggedIn) {
         //navigate('/home')
       }
-    }, []);
+    }, [dispatch]);
 
     return (
         <>

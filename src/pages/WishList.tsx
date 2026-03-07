@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useTranslation } from 'react-i18next';
 import { useActivate, useUnactivate } from "react-activation";
 
@@ -8,7 +7,7 @@ import Header from "../components/Header";
 import MenuBar from '../components/MenuBar';
 //import { setReactions } from "../store/profileFormSlice";
 import { navigate } from "../navigationService";
-import type { RootState } from '../store';
+import { useAppSelector } from "../types";
 
 interface WishListProps{
     savedScroll: number;
@@ -17,7 +16,7 @@ interface WishListProps{
 
 export default function WishList({ savedScroll, onSaveScroll }: WishListProps) {
   const {t} = useTranslation()
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user } = useAppSelector((state) => state.user);
   const [crushes, setCrushes] = useState<any[]>([]);
   const [page, setPage] = useState<number>(1);
   const [lastPage, setLastPage] = useState<number>(0);

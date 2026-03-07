@@ -1,5 +1,4 @@
 import Header from '../components/Header';
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from "react";
 import { useTranslation } from 'react-i18next';
 
@@ -12,16 +11,17 @@ import LoaderWhite from '../components/LoaderWhite';
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import type { AppDispatch, RootState } from '../store';
+import { useAppSelector } from '../types';
+import { useAppDispatch } from '../hooks/reduxHooks';
 
 export default function PaymentVerification() {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate()
   const {t} = useTranslation()
   const location = useLocation();
   const MySwal = withReactContent(Swal);
 
-  const { isSaving } = useSelector((state: RootState) => state.user);
+  const { isSaving } = useAppSelector((state) => state.user);
 
   // Load data on page change
   useEffect(() => {
