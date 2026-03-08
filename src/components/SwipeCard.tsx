@@ -35,7 +35,8 @@ interface SwipeCardProps{
 export default function SwipeCard({ profile, onSwipe, disabled, remainingFreeSwiping, subscriptionData }: SwipeCardProps) {
   const dispatch = useAppDispatch();
   const {t} = useTranslation()
-  const MotionDiv = motion.create("div");
+  //const MotionDiv = motion.create("div");
+  const MotionDiv = motion.div;
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -116,10 +117,10 @@ export default function SwipeCard({ profile, onSwipe, disabled, remainingFreeSwi
         alt={profile.firstname}
         effect="blur"
         style={{
-          x,
+          /* x,
           y,
           rotate,
-          opacity,
+          opacity, */
           objectFit: "cover",
           width: "100%",
           height: "100%",
@@ -130,10 +131,10 @@ export default function SwipeCard({ profile, onSwipe, disabled, remainingFreeSwi
               : 0
           }px)`,
         }}
-        drag={!disabled}
+        /* drag={!disabled}
         dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
         dragElastic={0.5}
-        onDragEnd={handleDragEnd}
+        onDragEnd={handleDragEnd} */
         width="100%"
         height="100%"
         placeholderSrc="/loader.gif"
