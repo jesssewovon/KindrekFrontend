@@ -55,7 +55,7 @@ export default function Chat() {
         //alert('hhh')
         getNewMessages()
         //console.log("Tick... reactionsRef", reactionsRef.current, reactions);
-      }, 5000);
+      }, 30000);
       console.log('Timer started')
   };
   const stopTimer = () => {
