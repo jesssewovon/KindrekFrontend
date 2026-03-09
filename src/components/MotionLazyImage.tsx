@@ -1,21 +1,36 @@
-import { forwardRef } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { motion } from "framer-motion";
-import {
-  LazyLoadImage,
-} from "react-lazy-load-image-component";
-import type {
-  LazyLoadImageProps,
-} from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css"; // nice blur effect
 
-// Wrap LazyLoadImage with forwardRef and pass innerRef
-const LazyImage = forwardRef<HTMLImageElement, LazyLoadImageProps>(
-  (props) => {
-    return <LazyLoadImage {...props} />;
-  }
-);
+type Props = {
+  src: string;
+  alt?: string;
+  style?: React.CSSProperties;
+  width?: number | string;
+  height?: number | string;
+  placeholderSrc?: string;
+  effect?: "blur" | "opacity";
+};
 
-// Create motion-enabled version
-const MotionLazyImage = motion.create(LazyImage);
-
-export default MotionLazyImage;
+export default function MotionLazyImage({
+  src,
+  alt,
+  style,
+  width,
+  height,
+  placeholderSrc,
+  effect = "blur",
+}: Props) {
+  return (
+    <motion.div style={{ width, height }}>
+      <LazyLoadImage
+        src={src}
+        alt={alt}
+        effect={effect}
+        placeholderSrc={placeholderSrc}
+        style={style}
+        width={width}
+        height={height}
+      />
+    </motion.div>
+  );
+}

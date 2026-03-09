@@ -150,6 +150,7 @@ export const initialState: ProfileState = {
   interested_gender: "",
   relationship_goal: "",
   images: {},
+  imageFirst: "",
   reactions: [],
 };
 

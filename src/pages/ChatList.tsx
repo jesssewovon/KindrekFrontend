@@ -112,7 +112,6 @@ export default function ChatList() {
                 <ul className="message-list">
                   {chatList?.map((chat: any, index) => {
                       return (
-                        <>
                           <li key={`chat-${index}`} className={` ${getCorresponder(chat)?.isOnline?'active':''}`}>
                             <Link to={`/chat/${getCorresponder(chat)?.id}`}>
                               <div className="media media-60">
@@ -147,7 +146,6 @@ export default function ChatList() {
                               </div>
                             </Link>
                           </li>
-                        </>
                       );
                   })}
                 </ul>

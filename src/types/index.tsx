@@ -30,6 +30,7 @@ export interface ProfileState {
   gender: string;
   sexual_orientation: any[];
   images?: any;
+  imageFirst: string;
   interested_gender: string;
   interested_min_age?: number|null;
   interested_max_age?: number|null;
@@ -41,7 +42,6 @@ export interface ProfileState {
   distance?: string;
   /////////////////////////////
   isNew?: boolean;
-  imageFirst?: string;
   hasActiveSubscription?: boolean;
   active_subscription?: any;
   isOnline?: boolean;

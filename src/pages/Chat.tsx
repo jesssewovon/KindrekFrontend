@@ -241,7 +241,7 @@ export default function Chat() {
               <div className="container">
                 <div className="header-content">
                   <div className="left-content me-3">
-                    <a onClick={() => navigate("-1")} className="back-btn">
+                    <a onClick={() => navigate(-1)} className="back-btn">
                       <i className="icon feather icon-chevron-left"></i>
                     </a>
                   </div>
@@ -305,7 +305,7 @@ export default function Chat() {
                   {/* DISPLAYING MESSAGES */}
                   {messages?.map((message, index) => {
                       return (
-                        <>
+                        <div key={index}>
                           {
                             !messages[index-1]?.created_at?.includes(message.created_at.substr(0, 10)) &&
                             (
@@ -321,7 +321,7 @@ export default function Chat() {
                             (<MessageRight key={`right-${index}`} message={message.message} time={moment(message.created_at).format('LT')}/>)
                             :(<MessageLeft key={`left-${index}`} message={message.message} time={moment(message.created_at).format('LT')}/>)
                           }
-                        </>
+                        </div>
                       );
                   })}
 
